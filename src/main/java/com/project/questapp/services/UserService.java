@@ -11,7 +11,7 @@ import com.project.questapp.repos.UserRepository;
 @Service
 public class UserService {
 
-	private UserRepository userRepository;
+	private final UserRepository userRepository;
 
 	public UserService(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -46,6 +46,9 @@ public class UserService {
 		userRepository.deleteById(userId); 
 		
 	}
-	
-	
+
+
+    public User getOneUserByUserName(String userName) {
+		return userRepository.findByUserName(userName);
+    }
 }

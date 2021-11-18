@@ -2,6 +2,7 @@ package com.project.questapp.entities;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -18,9 +19,9 @@ public class Post {
 	
 	@ManyToOne(fetch= FetchType.EAGER)
 	@JoinColumn(name="user_id",nullable=false)
-	@OnDelete(action = OnDeleteAction.CASCADE)  
+	@OnDelete(action = OnDeleteAction.CASCADE) //bir user silindiğinde tüm postları silinsin
+	@JsonIgnore
 	User user;
-	
 	String title;
 	@Lob
 	@Column(columnDefinition = "text")
